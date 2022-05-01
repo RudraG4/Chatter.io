@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script type="module" src="./app/index.js" defer></script>
+    <title>Chatter.io</title>
+</head>
+
+<body>
+    <div id="header">
+        <div class="logo_wrapper">
+            <div id="logo"></div>
+            <div id="app_name">Chatter.io</div>
+        </div>
+        <div class="banner_right">
+            <div class="user_avatar"></div>
+            <div class="user_name"></div>
+        </div>
+    </div>
+    <main class="main">
+        <div id="contacts-wrapper">
+            <div id="search-header">
+                <input type="text" name="search-content" id="search-content" class="search-box"
+                    placeholder="Search Active Users">
+            </div>
+            <ul id="contacts"></ul>
+        </div>
+        <div id="chatbox">
+            <div id="chatbox-header">
+                <div class="user_avatar"></div>
+                <div class="user_name"></div>
+            </div>
+            <div id="message-container"></div>
+            <form action="" id="send-container">
+                <input type="hidden" name="recipient" id="recipient-input" disabled contenteditable="false">
+                <input type="text" name="message" id="message-input" placeholder="Type a message...">
+                <button id="send-btn">Send</button>
+            </form>
+            <div id="mask">Chatter.io, an online chat application. Connect with your friends and other active users.</div>
+        </div>
+    </main>
+</body>
+
+</html>

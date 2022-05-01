@@ -1,0 +1,285 @@
+@import '_variables.scss';
+
+@mixin position($top, $right: $top, $bottom: $top, $left: $right) {
+    top   : $top;
+    right : $right;
+    bottom: $bottom;
+    left  : $left;
+}
+
+* {
+    margin     : 0;
+    padding    : 0;
+    box-sizing : border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    display           : grid;
+    grid-template-rows: minmax(60px, auto) 1fr;
+    background-color  : $primary-background-color;
+}
+
+input[type=text] {
+    color        : $primary-text-color;
+    background   : $secondary-background-color;
+    border-radius: 10px;
+    padding      : 10px;
+    outline      : 0;
+    border       : 0;
+    font-size    : 16px;
+    width        : 100%;
+}
+
+div#header {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    align-content  : center;
+    width          : 100%;
+    padding        : 0px 15px;
+    border-bottom  : 1px solid $border-color;
+    flex-wrap      : wrap;
+}
+
+.logo_wrapper {
+    display        : flex;
+    float          : left;
+    height         : 50px;
+    justify-content: flex-start;
+    align-items    : center;
+    color          : $primary-text-color;
+}
+
+div#logo {
+    width       : 40px;
+    height      : 40px;
+    background  : $accent-color;
+    margin-right: 10px;
+}
+
+div#app_name {
+    font-size  : 1.5rem;
+    font-family: cursive;
+}
+
+.banner_right {
+    display        : flex;
+    float          : right;
+    height         : 50px;
+    justify-content: flex-end;
+    align-items    : center;
+    color          : $primary-text-color;
+}
+
+.user_avatar {
+    min-width    : 40px;
+    width        : 40px;
+    height       : 40px;
+    border-radius: 50px;
+    border       : 2px solud $primary-text-color;
+    background   : antiquewhite;
+    margin-right : 8px;
+    position     : relative;
+    cursor       : pointer;
+}
+
+.user_name {
+    height     : 50px;
+    line-height: 50px;
+    width      : 100%;
+    cursor     : pointer;
+}
+
+.main {
+    display              : grid;
+    grid-template-columns: minmax(300px, 25%) 1fr;
+    background           : $primary-background-color;
+}
+
+div#contacts-wrapper {
+    display           : grid;
+    grid-template-rows: 60px 1fr;
+    border-right      : 1px solid $border-color;
+    width             : 100%;
+}
+
+ul#contacts {
+    height    : calc(100vh - 120px);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+
+    li {
+        padding      : 5px 10px;
+
+        .contactwrapper {
+            display        : flex;
+            align-items    : center;
+            align-content  : center;
+            justify-content: flex-start;
+            color          : $primary-text-color;
+            padding        : 2px;
+            border-radius  : 10px;
+            overflow       : hidden;
+
+            &.active {
+                background: $secondary-background-color;
+            }
+        }
+    }
+}
+
+#contacts,
+#chatbox-header {
+    .user_avatar::after {
+        content      : "";
+        min-width    : 12px;
+        width        : 12px;
+        height       : 12px;
+        border-radius: 50px;
+        border       : 2px solid $primary-text-color;
+        background   : greenyellow;
+        position     : absolute;
+        bottom       : -2px;
+        right        : -2px;
+    }
+}
+
+input#search-contact {
+    height: 80%;
+    width : 100%;
+    margin: 0 5px;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+div#chatbox {
+    display           : grid;
+    grid-template-rows: 60px 1fr auto;
+    width             : 100%;
+    position          : relative;
+}
+
+div#chatbox-header,
+div#search-header {
+    background   : $primary-background-color;
+    color        : $primary-text-color;
+    border-bottom: 1px solid $border-color;
+    padding      : 5px 10px;
+    display      : flex;
+    align-items  : center;
+    align-content: center;
+    gap          : 15px;
+}
+
+#message-container {
+    overflow-y: auto;
+    background: $primary-background-color;
+    padding   : 20px;
+    height    : calc(100vh - 180px);
+    max-height: calc(100vh - 180px);
+}
+
+::-webkit-scrollbar {
+    width        : 5px;
+    border-radius: 0px;
+    box-shadow   : none;
+    background   : $primary-background-color;
+}
+
+::-webkit-scrollbar-thumb {
+    border       : 0;
+    border-radius: 0;
+    background   : $accent-color;
+}
+
+#send-container {
+    display        : flex;
+    justify-content: center;
+    margin         : 10px;
+
+    input {
+        width       : 100%;
+        height      : 40px;
+        margin-right: 15px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        width        : 80px;
+        height       : 40px;
+        outline      : 0;
+        color        : $primary-text-color;
+        background   : $accent-color;
+        border-radius: 5px;
+        border       : none;
+        cursor       : pointer;
+
+        &:hover {
+            background: lighten($accent-color, 4%);
+        }
+    }
+}
+
+div#mask {
+    position: absolute;
+    @include position(0);
+    background     : $primary-background-color;
+    align-items    : center;
+    justify-content: center;
+    color          : white;
+    z-index        : 5;
+    display        : flex;
+}
+
+.message-pop {
+    clear: both;
+}
+
+.message-pop-wrapper {
+    display       : flex;
+    flex-direction: column;
+    margin-bottom : 15px;
+    max-width     : 80%;
+}
+
+.message {
+    background   : $accent-color;
+    color        : $primary-text-color;
+    width        : fit-content;
+    overflow-wrap: anywhere;
+    padding      : 10px;
+    border-radius: 5px;
+}
+
+.message-details {
+    color        : $primary-text-color;
+    font-size    : 10px;
+    margin-bottom: 2px;
+}
+
+.flex-left {
+
+    float: left;
+
+    .message-details {
+        text-align: left;
+    }
+}
+
+.flex-right {
+    float: right;
+
+    .message-details {
+        text-align: end;
+    }
+}
